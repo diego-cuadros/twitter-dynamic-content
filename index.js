@@ -62,11 +62,6 @@ function getParamater() {
 
 let parametersResult = getParamater();
 let selectedUser = users[parametersResult];
-
-console.log(selectedUser.displayName);
-
-
-
 //:::::::::::::::::::::::::::::END OF OBJECT::::::::::::::::::::::::::::::::::::::::::::
 
 function calculateNumberOfTweets (tweetsObj){
@@ -138,16 +133,12 @@ const tweetsContainer = document.getElementById('tweets-container');
 
 
 function showTweets(){
-
-    
-
     for(let i = 0; i < selectedUser.tweets.length; i++){
         let tweet = document.createElement('div');
         tweet.classList.add('tweet-div');
         tweet.innerHTML = `
             <div class = "small-pic"></div>
             <div class = "single-tweet">
-
                 <div class = "single-tweet-info">
                     <div class = "single-tweet-display-name">  
                         ${selectedUser.displayName}   
@@ -167,7 +158,6 @@ function showTweets(){
                     <div class = "symbol">⇆</div>
                     <div class = "symbol">♡</div>
                     <div class = "symbol">↥</div>
-
                 </div>
             </div>
             <div class ="three-dots-div">
@@ -245,7 +235,6 @@ function setNewActive (el){
     }
     el.classList.add('tab-active');
 }
-
 //select tab class and loop through
 let tabs = document.getElementsByClassName('tab');
 for(let tab of tabs){
@@ -254,5 +243,3 @@ for(let tab of tabs){
     });
 }
 </script>*/
-
-       
