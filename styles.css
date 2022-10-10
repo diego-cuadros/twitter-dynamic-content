@@ -205,7 +205,7 @@
     font-weight: 600;
 }
 
-.small-pic {
+.small-pic, #pictureId {
     background-size: contain;
     background-repeat: no-repeat;
     height: 90px;

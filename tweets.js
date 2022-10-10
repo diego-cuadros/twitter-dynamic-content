@@ -66,6 +66,7 @@ function convertTimeToObj (){
 
 
 function extractTweets(){
+
 //I'm extracting the tweets and timestamps to an array.
 for (let key in users){
     for (let i = 0; i < users[key].tweets.length; i++){
@@ -86,28 +87,22 @@ function sortTweets(array){
 
 function showTweets (array){
     
-    let isItElon = false;
+    let profilePicture = [];
     let displayName = "";
     let userName = "";
-   
 
-    for (let key in array){
-        for(let i = 0; i < users.user1.tweets.length; i++){
-            if (array[key] === users.user1.tweets[i]){
-                isItElon = true;
+    for (let j = 0; j < array.length;j++){ 
+        for (let key in users){
+            for (let i = 0; i < users[key].tweets.length; i++) {
+                if (array[j].text === users[key].tweets[i].text){
+                    displayName = users[key].displayName;
+                    userName = users[key].userName;
+                    profilePicture.push(users[key].avatarURL);
+                }
             }
         }
 
-
-        if(isItElon){
-            displayName = users.user1.displayName;
-            userName = users.user1.userName;
-        } else {
-            displayName = users.user2.displayName;
-            userName = users.user2.userName;
-        }
-
-            let tweet = document.createElement('div');
+        let tweet = document.createElement('div');
             tweet.classList.add('tweet-div');
             tweet.innerHTML = `
             <div class = "small-pic"></div>
@@ -120,11 +115,11 @@ function showTweets (array){
                         ${userName}     
                     </div>
                     <div class = "single-tweet-posted-time">
-                        ${array[key].timestamp}
+                        ${array[j].timestamp}
                     </div>
                 </div>
                 <div>
-                    <p class = "tweet">${array[key].text}</p>
+                    <p class = "tweet">${array[j].text}</p>
                 </div>
                 <div class = "symbols">
                     <div class = "symbol">▢</div>
@@ -137,21 +132,32 @@ function showTweets (array){
                 <p class = "three-dots">...</p>
             </div>        
             `;
-        (tweetsContainer).appendChild(tweet); 
-
-        displayName = "";
-        userName = "";
-        profilePic = "";
-        isItElon = false;
-
+        
+            (tweetsContainer).appendChild(tweet);
+            
     }
 
-    assignImages(array);
+    let smallPics = document.getElementsByClassName('small-pic');
+    let index = 0;
 
+    for(let smallPic of smallPics){
+        smallPic.style.backgroundImage = `url(${profilePicture[index]})`;
+        index++;
+    }
+
+ 
+    /*let smallPics = document.getElementsByClassName('small-pic');
+    for(let smallPic of smallPics){
+        smallPic.style.backgroundImage = `url(${profilePicture[0]})`;
+    }
+
+    console.log(typeof profilePicture[0]);*/
 }
 
 
-function assignImages(array){
+/*function assignImages(picture){
+
+
     let profilePic = "";
     let tweets = document.getElementsByClassName('tweet');
     let compare = "";  
@@ -184,13 +190,11 @@ function assignImages(array){
     }
 
     //Assigns the picture to the tweet
-    let index = 0
     let smallPics = document.getElementsByClassName('small-pic');
     for(let smallPic of smallPics){
-        smallPic.style.backgroundImage = `${arrayOfPictures[index]}`;
-        index++;
+        smallPic.style.backgroundImage = `${picture}`;
     }
-}
+}*/
 
 
 
@@ -200,5 +204,3 @@ let sortedTweets = [];
  
 convertTimeToObj ();
 extractTweets();
-
-
